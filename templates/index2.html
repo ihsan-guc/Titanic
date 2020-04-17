@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Titanik</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <script src="{{ url_for('static', filename='jquery/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+    <style>
+        div{
+            margin: 5px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="body">
+            <div id="deneme" class="content-body text-center">
+                    <div class="pt-3 centered carousel-inner">
+                        <h1 class="text-center">Titanikte Hayatta Kalma Tahmini Yapacaksın.</h1>
+                        <form action="{{ url_for('predict') }}" method = "post">
+                        <div class="form-group">
+                                <label class="control-label">Bilet Sinifi: </label><br>
+                                <select name="Bilet_Sinifi" class="form-control">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Cinsiyet : </label><br>
+                                <select name="Cinsiyet" class="form-control">
+                                    <option value="0">Female</option>
+                                    <option value="1">Male</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Yaş</label>
+                                <input class="form-control" type="text" name="Yaş:" required="required" placeholder = "Yaş...."/>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Kardeş Sayısı:</label>
+                                <input class="form-control" type="text" name="Kardeş Sayısı:" required="required" placeholder="Çocuk Sayisi...." />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Çocuk Sayısı:</label>
+                                <input class="form-control" type="text" name="Çocuk Sayısı:" required="required" placeholder="Çocuk Sayisi...." />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Ücret</label>
+                                <input class="form-control" type="text" name="Ücret" required="required" placeholder = "Ücret......" />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Cinsiyet : </label><br>
+                                <select name="Bilet" class="form-control">
+                                    <option value="0">Cherbourg</option>
+                                    <option value="1">Queenstown</option>
+                                    <option value="2">Southampton</option>
+                                </select>
+                            </div>
+                            <br><br>
+                            <button type="submit" class="btn btn-primary">Predict</button>
+                        </form>
+                        <div class="alert alert-success container">
+                                {{ prediction_text }}
+                        </div>
+                    </div>
+    </div>
+    </div>
+</body>
+</html>
+                        

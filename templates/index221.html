@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Turgutlu Emlak Fiyatları</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <script src="{{ url_for('static', filename='jquery/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+    <style>
+        .body {
+            position: relative;
+        }
+        #deneme {
+            position: relative;
+            text-align: center;
+            color: white;
+            margin-bottom: 0px;
+        }
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            transform: translate(-50%, -50%);
+            background: rgba(191, 191, 191, 0.3); 
+        }
+
+        .form-control {
+            width: max-content !important;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media screen and (max-width: 992px) {
+            .centered {
+                top: 50%;
+                font-size: 12px;
+            }
+            .centered h1 {
+                font-size: 20px;
+            }
+            .form-control {
+                display: inline-block;
+            }
+        }
+
+        @media screen and (min-width: 992px) {
+            .centered {
+                top: 35%;
+            }
+        }
+        /* Extra small devices (phones, 600px and down) */
+        @media only screen and (max-width: 600px) {
+            .centered {
+                top: 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand text-primary ml-5" href="/">Turgutlu Emlak Analiz</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div id="navbarNavDropdown" class="collapse navbar-collapse">
+                    <ul class="navbar-nav mr-auto ml-5">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/">Ana Sayfa <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Evler</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Kataloglar
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Katalog1</a>
+                                <a class="dropdown-item" href="#">Katalog2</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0 ml-5">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Ara..." aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ara</button>
+                    </form>
+                </div>
+            </nav>
+    </div>
+    <div class="body">
+            <div id="deneme" class="content-body text-center">
+                    <img src="{{ url_for('static', filename='img/photo1.jpg') }}" width="100%" />
+                    <div class="pt-3 centered carousel-inner">
+                        <h1 class="text-center">Emlak Analiz Tahmini</h1>
+                        <form action="{{ url_for('predict') }}" method = "post">
+                            <div class="form-group">
+                                <label class="control-label">Mahalle : </label><br>
+                                <select name="Mahalle" class="form-control">
+                                    <option value="1">Ergenekon</option>
+                                    <option value="2">Selvilitepe</option>
+                                    <option value="3">Sehitler</option>
+                                    <option value="4">Cumhuriyet</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Brüt(m²) :</label>
+                                <input class="form-control" type="text" name="m2(Brut)" required="required" placeholder="Brüt..." />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Oda Sayısı :</label>
+                                <input class="form-control" type="text" name="Oda_Sayisi" required="required" placeholder = "Evin Oda Sayisi..."/>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Salon Sayısı :</label>
+                                <input class="form-control" type="text" name="Salon_Sayisi" required="required" placeholder = "Evin Salon Sayisi..." />
+                            </div>
+                            <button type="submit" class="btn btn-primary">Predict</button>
+                            <br><br>
+                        </form>
+                        <div class="alert alert-success container">
+                                {{ prediction_text }}
+                        </div>
+                    </div>
+    </div>
+    
+    </div>
+</body>
+</html>
+                        
