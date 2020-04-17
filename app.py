@@ -26,7 +26,7 @@ def predict():
     if str(prediction) == "[0.]":
         output = "Öleceksiniz";
 
-    return render_template("index2.html", prediction_text = " {}".format(output) + "");
+    return render_template("index.html", prediction_text = " {}".format(output) + "");
 #run the app
 if __name__ == "__main__":
     app.run(debug = True)
