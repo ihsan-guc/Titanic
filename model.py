@@ -27,4 +27,4 @@ model = pickle.load(open('model.pkl', 'rb'))
 y_pred = regressor.predict(X_test)
 from sklearn.metrics import roc_auc_score
 predictions = model.predict(X_test)
-print('"0,7375" AUC: ', roc_auc_score(y_test, predictions))
+print('ROC_AUC_SCORE :', roc_auc_score(y_test, predictions))
